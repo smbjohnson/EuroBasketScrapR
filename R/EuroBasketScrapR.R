@@ -1,16 +1,21 @@
-#' A function that takes the first row of a dataframe and makes it the header
-#' @param Season This is a dataframe
-#' @param Country
-#' @param League
-#' @param Tournament
-#' @param Team
-#' @param PlayerLastName
-#' @param PlayerFirstName
-#' @param Position
+#' @title EuroBasketScrapR
+#'
+#' @description Takes input and returns a a \code{dataframe} with the desired data.
+#'
+#' @param Season List of two year ranges for season
+#' @param Country Character of countires
+#' @param League Character of leagues
+#' @param Tournament Character of tournament
+#' @param Team Character of team
+#' @param PlayerLastName Character last name of player
+#' @param PlayerFirstName Character first name of player
+#' @param Position Character position
 #' @import tidyverse
 #' @return 'EuroBasketScrapR()' returns a \code{dataframe} containing the desired data from EuroBasket.com
 #' @export
+#'
 #' @examples
+#' EuroBasketScrap(Position = "Point Guard")
 #'
 
 library(tidyverse)

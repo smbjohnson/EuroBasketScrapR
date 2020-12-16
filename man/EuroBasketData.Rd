@@ -8,8 +8,7 @@
 A \code{dataframe} with 62 collumns which are:
 \describe{
 \item{JER}{the jersey number of the player at the time}
-\item{LAST}{Last name of the player}
-\item{FIRST}{First name of the player}
+\item{NAME}{The name of the player Last, First}
 \item{G}{Number of games played by a player in that tournament in that season}
 \item{MIN}{Average number of minuites played by a play in that tournament in that season}
 \item{FGM.A}{Number of field goals attempted and made by a player in that tournament in that season}
@@ -38,26 +37,30 @@ A \code{dataframe} with 62 collumns which are:
 \item{HREF}{The URL for the team stats}
 \item{LEAGUE}{The league the team is apart of}
 \item{COUNTRY}{The country the team is found in}
+\item{CONTINENT}{The Continent the team is found in}
 \item{PLAYER.ID}{The personal player id of a player}
+\item{FIRST}{First name of the player all CAPS}
+\item{MIDDLE}{Middle name of the player all CAPS}
+\item{LAST}{Last name of the player all CAPS}
 \item{POSITION}{The position played by a player}
 \item{NATIONALITY}{The nationality of a player}
 \item{HEIGHT.CM}{The height of a player in centimeters}
 \item{HEIGHT.FT}{The height of a player in feet and inches}
 \item{WEIGHT.KG}{The weight of a player in kilograms}
 \item{WEIGHT.LBS}{The weight of a plyer in pounds}
-\item{BORN}{The birthday of a player}
+\item{CURRENT.TEAM}{Team the player currenlty plays for}
 \item{PAST.COUNTRIES}{The number of past countries a player has played in}
 \item{NBA.DRAFT.ELIGIBLE}{The year a player would be eligible for the the NBA draft}
-\item{BIRTHPLACE}{The birthplace of a player}
-\item{AGENCY}{The agency a player currently belongs to}
-\item{COLLEGE}{The college a player graduated from and year they graduated}
-\item{HIGH.SCHOOL}{The highschool a player graduated from and year they graduated}
-\item{DRAFT}{Year a player was drafted}
-\item{DRAFT.TEAM}{Team the player was drafted by}
-\item{AGENT}{The agent that a player currently uses}
-\item{E.MAIL}{Email of player}
-\item{CLASS}{Class of player ie:Freshman}
-\item{COMMITTED}{Team player is commited to play for}
+\item{COMMITTED}{Team the player is commited to}
+\item{CLASS}{The class in school of a player}
+\item{DRAFT}{The year the player was drafted in}
+\item{DRAFT.TEAM}{The team the drafted the player}
+\item{AGENT}{The agent that represents the player}
+\item{BORN}{Birthday of the player}
+\item{BIRTHPLACE}{Birthplace of the player}
+\item{COLLEGE}{College the player attended}
+\item{HIGH.SCHOOL}{High school the player attended}
+\item{E.MAIL}{Email}
 \item{PLAYER.HREF}{The URL for the player profile}
 }
 }

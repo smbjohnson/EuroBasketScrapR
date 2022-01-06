@@ -2,5 +2,9 @@
 
 export(CreateHeader)
 export(DraftTeam)
+export(PlayerHrefGrab)
 import(data.table)
+import(plyr)
+import(stringr)
 import(tidyverse)
+import(xml2)

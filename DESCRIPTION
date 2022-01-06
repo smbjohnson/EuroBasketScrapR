@@ -7,7 +7,7 @@ Maintainer: Samuel Johnson <smbjohnson98@gmail.com>
 Description: This package allows users to access data found on
     the basketball statistic website eurobasket.com.
 License: cool cool cool
-Imports: maps, data.table, plyr, tidyverse, xml2, stringr 
+Imports: maps, data.table, plyr, tidyverse, xml2, stringr, devtools 
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1

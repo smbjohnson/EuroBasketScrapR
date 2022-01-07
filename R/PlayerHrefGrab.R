@@ -15,6 +15,7 @@
 #' @import plyr
 #' @importFrom data.table setnames
 #' @import stringr
+#' @import magrittr
 #'
 #'
 #'

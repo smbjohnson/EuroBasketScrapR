@@ -22,15 +22,17 @@ Takes a player profile URL from EuroBasket.com and returns a \code{dataframe} wi
  with the players info.
 }
 \examples{
-df <- data.frame("https://basketball.asia-basket.com/player/Jimmer-Fredette/China/Shanghai-Sharks/135233",
-                  "https://basketball.asia-basket.com/team/China/Shanghai-Sharks/1950?Page=3",
-                  "135233")
+df <- data.frame(
+"https://basketball.asia-basket.com/player/Jimmer-Fredette/China/Shanghai-Sharks/135233",
+"https://basketball.asia-basket.com/team/China/Shanghai-Sharks/1950?Page=3",
+"135233")
 
 PlayerInfoGrab(df)
 
-df1 <- data.frame("https://basketball.asia-basket.com/player/Jimmer-Fredette/China/Shanghai-Sharks/135233",
-                  "a",
-                  "a")
+df1 <- data.frame(
+"https://basketball.asia-basket.com/player/Jimmer-Fredette/China/Shanghai-Sharks/135233",
+"a",
+"a")
 
 PlayerInfoGrab(df1)
 }

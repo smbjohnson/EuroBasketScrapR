@@ -18,6 +18,7 @@
 #' @importFrom data.table setnames
 #' @import stringr
 #' @import devtools
+#' @import magrittr
 #'
 #'
 #'
@@ -27,15 +28,17 @@
 #' @export
 #'
 #' @examples
-#' df <- data.frame("https://basketball.asia-basket.com/player/Jimmer-Fredette/China/Shanghai-Sharks/135233",
-#'                   "https://basketball.asia-basket.com/team/China/Shanghai-Sharks/1950?Page=3",
-#'                   "135233")
+#' df <- data.frame(
+#' "https://basketball.asia-basket.com/player/Jimmer-Fredette/China/Shanghai-Sharks/135233",
+#' "https://basketball.asia-basket.com/team/China/Shanghai-Sharks/1950?Page=3",
+#' "135233")
 #'
 #' PlayerInfoGrab(df)
 #'
-#' df1 <- data.frame("https://basketball.asia-basket.com/player/Jimmer-Fredette/China/Shanghai-Sharks/135233",
-#'                   "a",
-#'                   "a")
+#' df1 <- data.frame(
+#' "https://basketball.asia-basket.com/player/Jimmer-Fredette/China/Shanghai-Sharks/135233",
+#' "a",
+#' "a")
 #'
 #' PlayerInfoGrab(df1)
 
@@ -101,7 +104,7 @@ PlayerInfoGrab <- function(df){
 
   if("Height" %in% colnames(PlayerInfo)){
 
-    PlayerInfo <- separate(PlayerInfo, c("Height"), into = c("Height.cm", "Height.ft"), sep = "/")
+    PlayerInfo <- tidyr::separate(PlayerInfo, c("Height"), into = c("Height.cm", "Height.ft"), sep = "/")
 
     PlayerInfo$Height.cm <- as.numeric(trimws(gsub("cm","",PlayerInfo$Height.cm)))
 
@@ -109,7 +112,7 @@ PlayerInfoGrab <- function(df){
 
   if("Weight" %in% colnames(PlayerInfo)){
 
-    PlayerInfo <- separate(PlayerInfo, c("Weight"), into = c("Weight.kg", "Weight.lbs"), sep = "/")
+    PlayerInfo <- tidyr::separate(PlayerInfo, c("Weight"), into = c("Weight.kg", "Weight.lbs"), sep = "/")
 
     PlayerInfo$Weight.kg <- as.numeric(trimws(gsub("kg","", PlayerInfo$Weight.kg)))
     PlayerInfo$Weight.lbs <- as.numeric(trimws(gsub("lbs","", PlayerInfo$Weight.lbs)))

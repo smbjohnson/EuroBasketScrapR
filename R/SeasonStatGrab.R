@@ -15,6 +15,7 @@
 #' @importFrom data.table setnames
 #' @import stringr
 #' @import lubridate
+#' @import magrittr
 #'
 #'
 #'

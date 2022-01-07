@@ -3,6 +3,9 @@
 \name{PlayerHrefGrab}
 \alias{PlayerHrefGrab}
 \title{PlayerHrefGrab}
+\usage{
+PlayerHrefGrab(URL)
+}
 \arguments{
 \item{URL}{a URL taken from one of the stats pages on EuroBasket.com}
 }

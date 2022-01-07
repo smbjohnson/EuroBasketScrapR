@@ -15,7 +15,7 @@
 #' @import xml2
 #' @import plyr
 #' @import tidyverse
-#' @import data.table
+#' @importFrom data.table setnames
 #' @import stringr
 #' @import devtools
 #'
@@ -40,15 +40,6 @@
 #' PlayerInfoGrab(df1)
 
 
-library(xml2)
-library(rvest)
-library(plyr)
-library(tidyverse)
-library(data.table)
-library(stringr)
-library(devtools)
-
-
 PlayerInfoGrab <- function(df){
 
   x <- df[1,1]
@@ -57,9 +48,9 @@ PlayerInfoGrab <- function(df){
 
   ##Player Name
   PlayerName <- x %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[@class = "player-title"]') %>%
-    html_text() %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath = '//*[@class = "player-title"]') %>%
+    xml2::xml_text() %>%
     gsub("basketball profile", "", .) %>%
     trimws() %>%
     strsplit(.," ")
@@ -95,10 +86,10 @@ PlayerInfoGrab <- function(df){
 
   ##Player Info
   PlayerInfo <- x %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[@class = "frunt-news players-info"]') %>%
-    html_nodes("p") %>%
-    html_text() %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath = '//*[@class = "frunt-news players-info"]') %>%
+    rvest::html_nodes("p") %>%
+    xml2::xml_text() %>%
     unique() %>%
     strsplit(., ":") %>%
     lapply(., trimws) %>%
@@ -146,11 +137,11 @@ PlayerInfoGrab <- function(df){
 
   ##Number of Countries
   NumCtry <- x %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[@class = "player-right"]') %>%
-    html_nodes("p") %>%
-    html_nodes("img") %>%
-    html_attr("alt") %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath = '//*[@class = "player-right"]') %>%
+    rvest::html_nodes("p") %>%
+    rvest::html_nodes("img") %>%
+    xml2::xml_attr("alt") %>%
     gsub("-", " ",.)  %>%
     .[. %in% CountryNames] %>%
     unique(.) %>%
@@ -166,7 +157,7 @@ PlayerInfoGrab <- function(df){
   PlayerInfo$PLAYER.ID <- z
 
 
-  setnames(PlayerInfo, toupper(names(PlayerInfo)))
+  data.table::setnames(PlayerInfo, toupper(names(PlayerInfo)))
 
   return(PlayerInfo)
 

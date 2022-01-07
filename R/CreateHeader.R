@@ -8,7 +8,6 @@
 #'
 #' @param x a \code{dataframe}.
 #'
-#' @import data.table
 #'
 #'
 #'
@@ -20,7 +19,6 @@
 #' df <- data.frame(x = c("First", "Sam"), y = c("Height", 178))
 #' CreateHeader(df)
 
-library(data.table)
 
 CreateHeader <- function(x){
 

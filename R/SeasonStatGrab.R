@@ -12,7 +12,7 @@
 #' @import xml2
 #' @import plyr
 #' @import tidyverse
-#' @import data.table
+#' @importFrom data.table setnames
 #' @import stringr
 #' @import lubridate
 #'
@@ -26,26 +26,20 @@
 #' @examples
 #' SeasonStatGrab(URL = "https://basketball.eurobasket.com/team/Spain/BAXI-Manresa/318?Page=3")
 
-library(xml2)
-library(plyr)
-library(tidyverse)
-library(data.table)
-library(stringr)
-library(lubridate)
 
 SeasonStatGrab <- function(URL){
 
   TeamTest <- URL %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[@class = "team-title"]') %>%
-    html_text() %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath = '//*[@class = "team-title"]') %>%
+    xml2::xml_text() %>%
     trimws()
 
   HeaderTest <- URL %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[@class = "padding-left-10 social"]') %>%
-    html_nodes("span") %>%
-    html_text() %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath = '//*[@class = "padding-left-10 social"]') %>%
+    rvest::html_nodes("span") %>%
+    xml2::xml_text() %>%
     str_match(.,"\\((.*?)\\)") %>%
     .[1,2] %>%
     strsplit(.,"-")
@@ -54,30 +48,30 @@ SeasonStatGrab <- function(URL){
   LeagueTest <- HeaderTest[[1]][2]
 
   StatsTest <- URL %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[@id = "table_stats1"]') %>%
-    html_table(fill=T) %>%
-    lapply(.,function(x) setnames(x, toupper(names(x)))) %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath = '//*[@id = "table_stats1"]') %>%
+    rvest::html_table(fill=T) %>%
+    lapply(.,function(x) data.table::setnames(x, toupper(names(x)))) %>%
     lapply(.,rename_rebound)
 
 
   PlayerIDTest <- URL %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[@id = "table_stats1"]') %>%
-    html_nodes(xpath = '//*[@class = "my_playerName"]') %>%
-    html_nodes("a") %>%
-    html_attr("href") %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath = '//*[@id = "table_stats1"]') %>%
+    rvest::html_nodes(xpath = '//*[@class = "my_playerB"]') %>%
+    # rvest::html_nodes("a") %>%
+    xml2::xml_attr("href") %>%
     strsplit(., "[=/]+") %>%
     sapply(., function(x)x[length(x)]) %>%
     as.numeric()
 
 
   SeasonTest <- URL %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[@id = "teamstatstbl2"]') %>%
-    html_nodes("p") %>%
-    html_nodes("b") %>%
-    html_text() %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath = '//*[@id = "teamstatstbl2"]') %>%
+    rvest::html_nodes("p") %>%
+    rvest::html_nodes("b") %>%
+    xml2::xml_text() %>%
     .[!grepl("Team Summary",.)] %>%
     .[!grepl("Games List",.)] %>%
     gsub(" Players Stats","",.)  %>%
@@ -89,14 +83,14 @@ SeasonStatGrab <- function(URL){
 
 
   RecordTest <- URL %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[@style = "height:auto;"]') %>%
-    html_table(fill = TRUE) %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath = '//*[@style = "height:auto;"]') %>%
+    rvest::html_table(fill = TRUE) %>%
     .[which(sapply(.,ncol) == 6)] %>%
     data.frame(.) %>%
     CreateHeader() %>%
     split(., sort(as.numeric(rownames(.)))) %>%
-    lapply(.,function(x) setnames(x, toupper(names(x))))
+    lapply(.,function(x) data.table::setnames(x, toupper(names(x))))
 
 
   if(length(RecordTest) > 0){

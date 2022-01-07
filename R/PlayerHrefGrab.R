@@ -13,7 +13,7 @@
 #' @import xml2
 #' @import tidyverse
 #' @import plyr
-#' @import data.table
+#' @importFrom data.table setnames
 #' @import stringr
 #'
 #'
@@ -26,20 +26,15 @@
 #' @examples
 #' PlayerHrefGrab(URL = "https://basketball.eurobasket.com/team/Spain/BAXI-Manresa/318?Page=3")
 
-library(xml2)
-library(plyr)
-library(tidyverse)
-library(data.table)
-library(stringr)
 
 PlayerHrefGrab <- function(URL){
 
   PlayerID <- URL %>%
     xml2::read_html() %>%
-    xml2::html_nodes(xpath = '//*[@id = "table_stats1"]') %>%
-    xml2::html_nodes(xpath = '//*[@class = "my_playerName"]') %>%
-    xml2::html_nodes("a") %>%
-    xml2::html_attr("href") %>%
+    rvest::html_nodes(xpath = '//*[@id = "table_stats1"]') %>%
+    rvest::html_nodes(xpath = '//*[@class = "my_playerB"]') %>%
+    # rvest::html_nodes("a") %>% no longer needed because of website update 1/6/2022
+    xml2::xml_attr("href") %>%
     unique() %>%
     strsplit(., "[=/]+") %>%
     sapply(., function(x)x[length(x)]) %>%
@@ -48,10 +43,10 @@ PlayerHrefGrab <- function(URL){
 
   PlayerHREF <- URL %>%
     xml2::read_html() %>%
-    xml2::html_nodes(xpath = '//*[@id = "table_stats1"]') %>%
-    xml2::html_nodes(xpath = '//*[@class = "my_playerName"]') %>%
-    xml2::html_nodes("a") %>%
-    xml2::html_attr("href") %>%
+    rvest::html_nodes(xpath = '//*[@id = "table_stats1"]') %>%
+    rvest::html_nodes(xpath = '//*[@class = "my_playerB"]') %>%
+    # rvest::html_nodes("a") %>% no longer needed because of website update 1/6/2022
+    xml2::xml_attr("href") %>%
     unique() %>%
     data.frame()
 

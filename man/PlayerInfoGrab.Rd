@@ -3,6 +3,9 @@
 \name{PlayerInfoGrab}
 \alias{PlayerInfoGrab}
 \title{PlayerInfoGrab}
+\usage{
+PlayerInfoGrab(df)
+}
 \arguments{
 \item{df}{a \code{dataframe} with the players' profile URL in the first collumn with the team URL in the second collumn
 and the player id in the third collumn. The second and third collumn are optional but it must but the input must be a

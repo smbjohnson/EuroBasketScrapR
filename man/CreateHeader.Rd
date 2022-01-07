@@ -3,6 +3,9 @@
 \name{CreateHeader}
 \alias{CreateHeader}
 \title{CreateHeader}
+\usage{
+CreateHeader(x)
+}
 \arguments{
 \item{x}{a \code{dataframe}.}
 }

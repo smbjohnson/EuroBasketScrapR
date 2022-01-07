@@ -3,6 +3,9 @@
 \name{SeasonStatGrab}
 \alias{SeasonStatGrab}
 \title{SeasonStatGrab}
+\usage{
+SeasonStatGrab(URL)
+}
 \arguments{
 \item{URL}{a URL taken from one of the stats pages on EuroBasket.com}
 }

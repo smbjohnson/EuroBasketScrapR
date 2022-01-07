@@ -18,7 +18,7 @@
 #' @importFrom data.table setnames
 #' @import stringr
 #' @import devtools
-#' @import magrittr
+#' @importFrom magrittr %>%
 #'
 #'
 #'

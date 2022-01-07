@@ -18,14 +18,7 @@
 #' given a uniform name
 #'
 #' @export
-#'
-#' @examples
-#' StatsTest <- x %>%
-#' read_html() %>%
-#' html_nodes(xpath = '//*[@id = "table_stats1"]') %>%
-#' html_table(fill=T) %>%
-#' lapply(.,function(x) setnames(x, toupper(names(x)))) %>%
-#' lapply(.,rename_rebound)
+
 
 
 

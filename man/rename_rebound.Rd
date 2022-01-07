@@ -21,11 +21,3 @@ from "OFF" to "RO", "DEF" to "RD", and "TOT" to "REB"
 'rename_rebound' takes a \code{dataframe} while in the function SeasonStatGrab() and
 changes the abbreviatons for offensive, defensive, and total rebounds to a uniform "RO", "RD", and "REB"
 }
-\examples{
-StatsTest <- x \%>\%
-read_html() \%>\%
-html_nodes(xpath = '//*[@id = "table_stats1"]') \%>\%
-html_table(fill=T) \%>\%
-lapply(.,function(x) setnames(x, toupper(names(x)))) \%>\%
-lapply(.,rename_rebound)
-}
